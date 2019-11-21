@@ -16,6 +16,22 @@ modal.add(layers.Flatten())
 modal.add(layers.Dense(64, activation='relu'))
 modal.add(layers.Dense(10, activation='softmax'))
 
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+
+train_images = train_images.reshape((60000, 28, 28, 1))
+train_images = train_images.astype('float32') / 255
+
+test_images = test_images.reshape((10000, 28, 28, 1))
+test_images = test_images.astype('float32') / 255
+
+train_labels = to_categorical(train_labels)
+test_labels = to_categorical(test_labels)
+
+
+modal.compile(optimizer='rmsprop',
+              loss='categorical_crossentropy', metrics=['accuracy'])
+
+modal.fit(train_images, train_labels, epochs=4, batch_size=64)
 
 # im = cv2.imread("maze00.jpg")
 # im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
