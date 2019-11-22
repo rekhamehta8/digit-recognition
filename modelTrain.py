@@ -32,7 +32,9 @@ modal.compile(optimizer='rmsprop',
               loss='categorical_crossentropy', metrics=['accuracy'])
 
 modal.fit(train_images, train_labels, epochs=4, batch_size=64)
-
+test_loss, test_accuracy = modal.evaluate(test_images, test_labels)
+print('Accuracy: ', test_accuracy)
+modal.save("MNIST.h5")
 # im = cv2.imread("maze00.jpg")
 # im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
 # rects = [(44, 44, 32, 32), (164, 44, 32, 32), (164, 124, 32, 32),
