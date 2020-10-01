@@ -1,12 +1,5 @@
 # Import the modules
-import cv2
-# from sklearn.externals import joblib
-# from skimage.feature import hog
-import numpy as np
-from keras.models import load_model
-# import modelTrain` as mTT
-# import h5py
-# from modelTrain import test_images, test_labels
+impo test_images, test_labels
 
 
 # Load the classifier
@@ -24,16 +17,7 @@ im = cv2.imread("maze0"+n+".jpg")
 im_gray = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
 # im_gray = cv2.GaussianBlur(im_gray, (5, 5), 0)
 
-# Threshold the image
-ret, im_th = cv2.threshold(im_gray, 90, 255, cv2.THRESH_BINARY_INV)
-edged = cv2.Canny(im_th, 28, 200)
-contours, hierarchy = cv2.findContours(edged.copy(),
-                                       cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-cv2.imshow('Canny Edges After Contouring', edged)
-cv2.waitKey(0)
-print("Number of Contours found = " + str(len(contours)))
-# Draw all contours
-# -1 signifies drawing all contours
+
 cv2.drawContours(im_th, contours, -1, (0, 255, 0), 3)
 cv2.imshow('canvas', im_th)
 cv2.waitKey()
